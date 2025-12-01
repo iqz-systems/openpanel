@@ -70,6 +70,10 @@ spec:
       tolerations:
 {{ toYaml .Values.redis.tolerations | indent 8 }}
 {{- end }}
+{{- if .Values.redis.affinity }}
+      affinity:
+{{ toYaml .Values.redis.affinity | indent 8 }}
+{{- end }}
 {{- if .Values.redis.persistence.enabled }}
   volumeClaimTemplates:
     - metadata:

@@ -37,6 +37,17 @@ postgresql:
   #   operator: "Equal"
   #   value: "postgresql"
   #   effect: "NoSchedule"
+  # Pod affinity/anti-affinity for PostgreSQL pods
+  affinity: {}
+  # Example:
+  #   nodeAffinity:
+  #     requiredDuringSchedulingIgnoredDuringExecution:
+  #       nodeSelectorTerms:
+  #       - matchExpressions:
+  #         - key: app
+  #           operator: In
+  #           values:
+  #           - openpanel
 
 # External PostgreSQL Configuration (when postgresql.enabled=false)
 externalPostgresql:
@@ -74,6 +85,17 @@ redis:
   #   operator: "Equal"
   #   value: "redis"
   #   effect: "NoSchedule"
+  # Pod affinity/anti-affinity for Redis pods
+  affinity: {}
+  # Example:
+  #   nodeAffinity:
+  #     requiredDuringSchedulingIgnoredDuringExecution:
+  #       nodeSelectorTerms:
+  #       - matchExpressions:
+  #         - key: app
+  #           operator: In
+  #           values:
+  #           - openpanel
 
 # External Redis Configuration (when redis.enabled=false)
 externalRedis:
@@ -110,6 +132,17 @@ clickhouse:
   #   operator: "Equal"
   #   value: "clickhouse"
   #   effect: "NoSchedule"
+  # Pod affinity/anti-affinity for ClickHouse pods
+  affinity: {}
+  # Example:
+  #   nodeAffinity:
+  #     requiredDuringSchedulingIgnoredDuringExecution:
+  #       nodeSelectorTerms:
+  #       - matchExpressions:
+  #         - key: app
+  #           operator: In
+  #           values:
+  #           - openpanel
 
 # External ClickHouse Configuration (when clickhouse.enabled=false)
 externalClickhouse:
@@ -142,6 +175,17 @@ api:
   #   operator: "Equal"
   #   value: "api"
   #   effect: "NoSchedule"
+  # Pod affinity/anti-affinity for API pods
+  affinity: {}
+  # Example:
+  #   nodeAffinity:
+  #     requiredDuringSchedulingIgnoredDuringExecution:
+  #       nodeSelectorTerms:
+  #       - matchExpressions:
+  #         - key: app
+  #           operator: In
+  #           values:
+  #           - openpanel
 
 # Dashboard Configuration
 dashboard:
@@ -168,6 +212,17 @@ dashboard:
   #   operator: "Equal"
   #   value: "dashboard"
   #   effect: "NoSchedule"
+  # Pod affinity/anti-affinity for Dashboard pods
+  affinity: {}
+  # Example:
+  #   nodeAffinity:
+  #     requiredDuringSchedulingIgnoredDuringExecution:
+  #       nodeSelectorTerms:
+  #       - matchExpressions:
+  #         - key: app
+  #           operator: In
+  #           values:
+  #           - openpanel
 
 # Worker Configuration
 worker:
@@ -194,7 +249,17 @@ worker:
   #   operator: "Equal"
   #   value: "worker"
   #   effect: "NoSchedule"
-
+  # Pod affinity/anti-affinity for Worker pods
+  affinity: {}
+  # Example:
+  #   nodeAffinity:
+  #     requiredDuringSchedulingIgnoredDuringExecution:
+  #       nodeSelectorTerms:
+  #       - matchExpressions:
+  #         - key: app
+  #           operator: In
+  #           values:
+  #           - openpanel
 # Application Configuration
 config:
   # Domain configuration

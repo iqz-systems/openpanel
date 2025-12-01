@@ -368,6 +368,64 @@ clickhouse:
 - `PreferNoSchedule` - Kubernetes will try to avoid scheduling pods on tainted nodes, but it's not required
 - `NoExecute` - Pods already running on the node will be evicted if they don't have a matching toleration
 
+### Pod Affinity and Anti-Affinity
+
+You can configure pod affinity and anti-affinity rules to control pod scheduling based on node labels or other pods:
+
+```yaml
+# Example: Schedule API pods only on nodes with specific label
+api:
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+        - matchExpressions:
+          - key: app
+            operator: In
+            values:
+            - openpanel
+
+# Example: Schedule PostgreSQL pods with node affinity
+postgresql:
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+        - matchExpressions:
+          - key: app
+            operator: In
+            values:
+            - openpanel
+
+# Example: Pod anti-affinity to spread pods across nodes
+api:
+  affinity:
+    podAntiAffinity:
+      preferredDuringSchedulingIgnoredDuringExecution:
+      - weight: 100
+        podAffinityTerm:
+          labelSelector:
+            matchExpressions:
+            - key: app
+              operator: In
+              values:
+              - openpanel-api
+          topologyKey: kubernetes.io/hostname
+```
+
+**Available components:**
+- `api.affinity` - Affinity rules for API pods
+- `dashboard.affinity` - Affinity rules for Dashboard pods
+- `worker.affinity` - Affinity rules for Worker pods
+- `postgresql.affinity` - Affinity rules for PostgreSQL pods
+- `redis.affinity` - Affinity rules for Redis pods
+- `clickhouse.affinity` - Affinity rules for ClickHouse pods
+
+**Affinity types:**
+- `nodeAffinity` - Control which nodes pods can be scheduled on based on node labels
+- `podAffinity` - Schedule pods together with other pods matching certain labels
+- `podAntiAffinity` - Avoid scheduling pods together with other pods matching certain labels
+
 ## Upgrading
 
 To upgrade to a newer version:

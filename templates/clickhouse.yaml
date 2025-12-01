@@ -144,6 +144,10 @@ spec:
       tolerations:
 {{ toYaml .Values.clickhouse.tolerations | indent 8 }}
 {{- end }}
+{{- if .Values.clickhouse.affinity }}
+      affinity:
+{{ toYaml .Values.clickhouse.affinity | indent 8 }}
+{{- end }}
       volumes:
         - name: clickhouse-config
           configMap:

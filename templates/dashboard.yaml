@@ -106,6 +106,10 @@ spec:
       tolerations:
 {{ toYaml .Values.dashboard.tolerations | indent 8 }}
 {{- end }}
+{{- if .Values.dashboard.affinity }}
+      affinity:
+{{ toYaml .Values.dashboard.affinity | indent 8 }}
+{{- end }}
       initContainers:
         - name: wait-for-api
           image: busybox:1.36

@@ -192,6 +192,10 @@ spec:
       tolerations:
 {{ toYaml .Values.api.tolerations | indent 8 }}
 {{- end }}
+{{- if .Values.api.affinity }}
+      affinity:
+{{ toYaml .Values.api.affinity | indent 8 }}
+{{- end }}
       initContainers:
         - name: wait-for-databases
           image: busybox:1.36

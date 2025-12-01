@@ -73,6 +73,10 @@ spec:
       tolerations:
 {{ toYaml .Values.postgresql.tolerations | indent 8 }}
 {{- end }}
+{{- if .Values.postgresql.affinity }}
+      affinity:
+{{ toYaml .Values.postgresql.affinity | indent 8 }}
+{{- end }}
 {{- if .Values.postgresql.persistence.enabled }}
   volumeClaimTemplates:
     - metadata:
